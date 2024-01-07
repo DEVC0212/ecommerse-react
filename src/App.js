@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { createBrowserRouter, RouterProvider} from 'react-router-dom';
+import Footer from './Components/Footer/Footer';
+import Signup from './Components/Authentication/Signup';
+import Layout from './Components/Layout/Layout';
+import Home from './Components/Home/Home';
+import Signin from './Components/Authentication/Signin';
+import Shop from './Components/Shop';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const [signup, setSignup] = useState(false);
+  const [signin, setSignin] = useState(false);
+
+  const signupHandler = () => {
+    setSignup(true);
+    setSignin(false);
+  };
+
+  const signinHandler = () => {
+    setSignin(true);
+    setSignup(false);
+  };
+
+  const switchToSignup = () => {
+    setSignup(true);
+    setSignin(false);
+  };
+
+  const switchToSignin = () => {
+    setSignin(true);
+    setSignup(false);
+  };
+
+  var dataFromChild = null;
+  const dataFromChildHandler = (data) => {
+    dataFromChild = data;
+  }
+
+  const router = createBrowserRouter([
+    {
+      path: '/', element: <Layout
+        signupCheck={signup}
+        signinCheck={signin}
+        signupfunc={signupHandler}
+        signinfunc={signinHandler}
+      >
+        {signup ? (
+          <Signup switchToSignin={switchToSignin} />
+        ) : signin ? (
+          <Signin switchToSignup={switchToSignup} />
+        ) : (
+          <Home sendDataToParent={dataFromChildHandler} />
+        )}
+        <Footer />
+      </Layout>
+    },
+    { path: '/shop', element: <Layout><Shop dataSendToChild={dataFromChild} /> <Footer /></Layout> }
+  ]);
+
+  return <RouterProvider router={router} />;
+};
 
 export default App;

@@ -1,0 +1,14 @@
+.featured{
+    /* background-color: grey; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 100px 100px 30px 100px;
+    /* background-color: blue; */
+}
+.featured .featured_text{
+    font-size: 30px;
+}
+.featured .featured_link a{
+    color: black;
+}

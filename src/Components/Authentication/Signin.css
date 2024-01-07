@@ -1,0 +1,71 @@
+body {
+    max-height: 70vh;
+}
+
+.signin {
+    margin-top: 120px;
+    border: 1px solid rgb(205, 195, 195);
+    max-width: 500px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.signin .heading {
+    padding: 20px;
+}
+
+.signin .name {
+    padding: 20px;
+}
+
+.signin .name p {
+    margin-left: -190px;
+    padding: 5px 0px;
+}
+
+.signin .name #email {
+    margin-left: -220px;
+}
+
+.signin .name input {
+    width: 250px;
+    height: 30px;
+    border: 1px solid rgb(210, 209, 209);
+    padding-inline: 10px;
+}
+
+.signin #signin {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.signin #signin:hover {
+    background-color: rgb(42, 41, 41);
+}
+
+.signin #signup{
+    padding: 10px;
+    background-color: rgb(246, 246, 245);
+    border: 1px solid rgb(211, 206, 206);
+    cursor: pointer;
+    transition: 0.5s;
+}
+.signin #signup:hover{
+    background-color: rgb(227, 225, 225);;
+}
+
+.signin .already {
+    border-top: 1px solid rgb(205, 195, 195);
+    padding: 20px;
+    background-color: rgb(246, 246, 245);
+}
+
+.signin .already .already_account {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

@@ -1,0 +1,37 @@
+.body{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1300px;
+    width: 100%;
+    margin: auto;
+    margin-top: 120px;
+    background-color: rgb(246, 246, 245);
+}
+.body .content{
+    max-width: 50%;
+}
+.body .content #h1{
+    max-width: 380px;
+    font-weight: 100;
+    padding: 50px 25px 20px 80px;
+    font-size: 50px;
+}
+.body .content #h1 .see{
+    font-weight: 600;
+}
+.body .content p{
+    padding: 10px 25px 20px 80px;
+    line-height: 25px;
+}
+.body .content button{
+    margin: 10px 25px 20px 80px;
+    padding: 20px 25px 20px 25px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.body .content #arrow{
+    margin: 0px 0px 0px 7px;
+    font-size: 17px;
+}

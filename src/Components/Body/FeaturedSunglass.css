@@ -1,0 +1,23 @@
+.container{
+    width: 400px ;
+    height: 310px ;
+    border: 1px solid #ccc ;
+    margin-top: 30px ;
+    cursor: pointer ;
+}
+.container .photo{
+    height: 200px ;
+    background-color: rgb(246, 246, 245) ;
+    text-align: center;
+}
+.container .photo img{
+    transition: 0.2s ease-in-out ;
+}
+.container:hover .photo img{
+    /* width: 400px ; */
+    /* height: 250px ; */
+    transform: scale(1.1) ;
+}
+.container .sentence{
+    padding: 20px 5px 5px 20px ;
+}

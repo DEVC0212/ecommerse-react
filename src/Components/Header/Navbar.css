@@ -1,0 +1,73 @@
+body {
+    height: 200vh;
+    margin: 0; /* Remove default body margin */
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0px;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgb(224, 219, 219);
+}
+
+.navbar .left ul {
+    display: flex;
+    align-items: center;
+    /* margin-left: -150px; */
+}
+
+.navbar .left ul li {
+    list-style-type: none;
+    margin: 0px 20px;
+}
+
+.navbar .left ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+.navbar .middle {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .middle input {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+.navbar .middle input:focus {
+    border-color: green !important;
+}
+
+.navbar .middle input::placeholder {
+    text-align: left;
+}
+
+.navbar .middle .icon {
+    margin: 10px;
+    padding: 5px;
+    font-size: 25px;
+    color: black;
+}
+
+.navbar .right button {
+    font-size: 12px;
+    border: none; /* Remove border */
+    padding: 17px;
+    margin-right: 20px; /* Adjust as needed */
+    cursor: pointer;
+}
+
+.navbar .right #signup {
+    background-color: black;
+    color: white;
+}
