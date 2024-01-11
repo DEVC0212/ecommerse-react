@@ -1,83 +1,9 @@
 import Body from '../Body/Body';
 import Featured from '../Body/Featured';
 import FeaturedSunglass from '../Body/FeaturedSunglass';
-import Image1 from '../Images/img1.png';
-import Image2 from '../Images/img2.png';
-import Image3 from '../Images/img3.png';
-import Image4 from '../Images/img4.png';
-import Image5 from '../Images/img5.png';
-import Image6 from '../Images/img6.png';
-import Image7 from '../Images/img7.png';
-import Image8 from '../Images/img8.png';
-import Image9 from '../Images/img9.png';
-import Image10 from '../Images/img10.png';
-import Image11 from '../Images/img11.png';
-import Image12 from '../Images/img12.png';
 
 const Home = (props) => {
-  const productNames = [
-    {
-      name: 'Burnikk',
-      style: 'Sexbomb',
-      image: Image1
-    },
-    {
-      name: 'Kibal Batal',
-      style: 'Kibal Black',
-      image: Image2
-    },
-    {
-      name: 'Very Nice',
-      style: 'Salt Maalat',
-      image: Image3
-    },
-    {
-      name: 'Buldit',
-      style: 'Salt Maalat',
-      image: Image4
-    },
-    {
-      name: 'Balakubak',
-      style: 'Betsin Maalat',
-      image: Image5
-    },
-    {
-      name: 'Tiktilaok Manok',
-      style: 'Sexbomb',
-      image: Image6
-    },
-    {
-      name: 'Burnikk',
-      style: 'Sexbomb',
-      image: Image7
-    },
-    {
-      name: 'Kibal Batal',
-      style: 'Kibal Black',
-      image: Image8
-    },
-    {
-      name: 'Very Nice',
-      style: 'Salt Maalat',
-      image: Image9
-    },
-    {
-      name: 'Kulangot',
-      style: 'Salt',
-      image: Image10
-    },
-    {
-      name: 'Sipon Malapot',
-      style: 'Salt',
-      image: Image11
-    },
-    {
-      name: 'Pitaklan',
-      style: 'Black Kibal',
-      image: Image12
-    },
-  ]
-  props.sendDataToParent(productNames);
+  props.resetHandler();
   const productStyle = {
     display: 'flex',
     justifyContent: 'space-around',
@@ -90,27 +16,27 @@ const Home = (props) => {
     <>
       <div>
         <Body />
-        <Featured text="Featured Products" />
+        <Featured text="Featured Products" link="/featured" />
         <div style={productStyle}>
-          <FeaturedSunglass productName={productNames[0]} img={Image1} />
-          <FeaturedSunglass productName={productNames[1]} img={Image2} />
-          <FeaturedSunglass productName={productNames[2]} img={Image3} />
+          <FeaturedSunglass productName={props.productNames[0]} img={props.productNames[0].image} />
+          <FeaturedSunglass productName={props.productNames[1]} img={props.productNames[1].image} />
+          <FeaturedSunglass productName={props.productNames[2]} img={props.productNames[2].image} />
         </div>
         <div style={productStyle}>
-          <FeaturedSunglass productName={productNames[3]} img={Image4} />
-          <FeaturedSunglass productName={productNames[4]} img={Image5} />
-          <FeaturedSunglass productName={productNames[5]} img={Image6} />
+          <FeaturedSunglass productName={props.productNames[3]} img={props.productNames[3].image} />
+          <FeaturedSunglass productName={props.productNames[4]} img={props.productNames[4].image} />
+          <FeaturedSunglass productName={props.productNames[5]} img={props.productNames[5].image} />
         </div>
-        <Featured text="Recommended Products" />
+        <Featured text="Recommended Products" link="/recommended" />
         <div style={productStyle}>
-          <FeaturedSunglass productName={productNames[6]} img={Image7} />
-          <FeaturedSunglass productName={productNames[7]} img={Image8} />
-          <FeaturedSunglass productName={productNames[8]} img={Image9} />
+          <FeaturedSunglass productName={props.productNames[6]} img={props.productNames[6].image} />
+          <FeaturedSunglass productName={props.productNames[7]} img={props.productNames[7].image} />
+          <FeaturedSunglass productName={props.productNames[8]} img={props.productNames[8].image} />
         </div>
         <div style={productStyle}>
-          <FeaturedSunglass productName={productNames[9]} img={Image10} />
-          <FeaturedSunglass productName={productNames[10]} img={Image11} />
-          <FeaturedSunglass productName={productNames[11]} img={Image12} />
+          <FeaturedSunglass productName={props.productNames[9]} img={props.productNames[9].image} />
+          <FeaturedSunglass productName={props.productNames[10]} img={props.productNames[10].image} />
+          <FeaturedSunglass productName={props.productNames[11]} img={props.productNames[11].image} />
         </div>
       </div>
     </>

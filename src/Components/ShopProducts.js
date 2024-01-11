@@ -13,7 +13,7 @@ const ShopProducts = (props) => {
                     <i>{props.style}</i>
                 </div>
                 <div className='price'>
-                    <h3>{props.price}</h3>
+                    <h3>${props.price}.00</h3>
                 </div>
                 <div className='basket'>
                     <p><a href='/'>Add to basket</a></p>

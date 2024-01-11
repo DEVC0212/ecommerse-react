@@ -28,8 +28,12 @@ body {
 }
 
 .navbar .left ul li a {
-    color: black;
+    color: rgb(131, 122, 122);
     text-decoration: none;
+}
+.navbar .left ul li .activeLink{
+    /* font-weight: 700; */
+    color: black;
 }
 
 .navbar .middle {

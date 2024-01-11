@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
-import {Link} from 'react-router-dom';
+import {NavLink,Link} from 'react-router-dom';
 import Image from "../Images/Logo.png";
 import Button from '../Button/Button';
 import './Navbar.css';
@@ -16,10 +16,10 @@ const Navbar = (props) => {
             <div className='left'>
                 <ul>
                     <li><Link to="/"><img src={Image} style={imageStyle} alt='' /></Link></li>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="shop">Shop</Link></li>
-                    <li><a href="/">Featured</a></li>
-                    <li><a href="/">Recommended</a></li>
+                    <li><NavLink to="/" activeclassname="activeLink">Home</NavLink></li>
+                    <li><NavLink to="/shop" activeclassname="activeLink">Shop</NavLink></li>
+                    <li><NavLink to="/featured" activeclassname="activeLink">Featured</NavLink></li>
+                    <li><NavLink to="/recommended" activeclassname="activeLink">Recommended</NavLink></li>
                 </ul>
             </div>
             <div className='middle'>

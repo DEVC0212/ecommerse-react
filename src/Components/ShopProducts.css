@@ -8,6 +8,8 @@
     cursor: pointer;
     overflow: hidden;
     text-align: center;
+    margin: 6px;
+    /* margin-inline: 10px; */
 }
 
 
