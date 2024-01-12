@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Footer from './Components/Footer/Footer';
 import Signup from './Components/Authentication/Signup';
@@ -8,73 +8,13 @@ import Signin from './Components/Authentication/Signin';
 import Shop from './Components/Shop';
 import FeaturedPageSection from './Components/FeaturedPages/FeaturedPageSection';
 import RecommendedPageSection from './Components/RecommendedPages/RecommendedPageSection';
-import {Image1,Image2,Image3,Image4,Image5,Image6,Image7,Image8,Image9,Image10,Image11,Image12} from './Components/Images/Images';
+import SearchProducts from './Components/SearchProducts';
 
-const App = () => {
+const App = (props) => {
   const [signup, setSignup] = useState(false);
   const [signin, setSignin] = useState(false);
-  const productNames = [
-    {
-      name: 'Burnikk',
-      style: 'Sexbomb',
-      image: Image1
-    },
-    {
-      name: 'Kibal Batal',
-      style: 'Kibal Black',
-      image: Image2
-    },
-    {
-      name: 'Very Nice',
-      style: 'Salt Maalat',
-      image: Image3
-    },
-    {
-      name: 'Buldit',
-      style: 'Salt Maalat',
-      image: Image4
-    },
-    {
-      name: 'Balakubak',
-      style: 'Betsin Maalat',
-      image: Image5
-    },
-    {
-      name: 'Tiktilaok Manok',
-      style: 'Sexbomb',
-      image: Image6
-    },
-    {
-      name: 'Burnikk',
-      style: 'Sexbomb',
-      image: Image7
-    },
-    {
-      name: 'Kibal Batal',
-      style: 'Kibal Black',
-      image: Image8
-    },
-    {
-      name: 'Very Nice',
-      style: 'Salt Maalat',
-      image: Image9
-    },
-    {
-      name: 'Kulangot',
-      style: 'Salt',
-      image: Image10
-    },
-    {
-      name: 'Sipon Malapot',
-      style: 'Salt',
-      image: Image11
-    },
-    {
-      name: 'Pitaklan',
-      style: 'Black Kibal',
-      image: Image12
-    },
-  ]
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filteredProduct , setFilteredProduct] = useState({});
 
   const signupHandler = () => {
     setSignup(true);
@@ -99,6 +39,14 @@ const App = () => {
     setSignup(false);
     setSignin(false);
   }
+  const searchQueryHandler = (searchQuery) => {
+    setSearchQuery(searchQuery);   
+  }
+  useEffect(()=>{
+    const filtered = props.productNames.filter(item=>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+      setFilteredProduct(filtered);
+  },[searchQuery,props.productNames]);
   const router = createBrowserRouter([
     { path: '/signup', element: 
     <Layout
@@ -117,8 +65,9 @@ const App = () => {
         signupCheck={signup}
         signinCheck={signin}
         signupfunc={signupHandler}
-        signinfunc={signinHandler}>
-          <Home resetHandler={resetHandler} productNames={productNames} />
+        signinfunc={signinHandler}
+        searchQueryHandler={searchQueryHandler}>
+          <Home resetHandler={resetHandler} productNames={props.productNames} />
         <Footer />
       </Layout>
     },
@@ -137,7 +86,7 @@ const App = () => {
     signinCheck={signin}
     signupfunc={signupHandler}
     signinfunc={signinHandler}>
-      <FeaturedPageSection resetHandler={resetHandler} productNames={productNames} />
+      <FeaturedPageSection resetHandler={resetHandler} productNames={props.productNames} />
     <Footer />
   </Layout> },
     { path: '/recommended', element: <Layout
@@ -145,9 +94,19 @@ const App = () => {
     signinCheck={signin}
     signupfunc={signupHandler}
     signinfunc={signinHandler}>
-      <RecommendedPageSection resetHandler={resetHandler} productNames={productNames} />
+      <RecommendedPageSection resetHandler={resetHandler} productNames={props.productNames} />
+    <Footer />
+  </Layout> },
+    { path: '/search', element: <Layout
+    signupCheck={signup}
+    signinCheck={signin}
+    signupfunc={signupHandler}
+    signinfunc={signinHandler}
+    productNames={props.productNames}>
+      <SearchProducts resetHandler={resetHandler} productNames={props.productNames} filteredProduct={filteredProduct}  />
     <Footer />
   </Layout> }
+
   ]);
 
   return <RouterProvider router={router} />;

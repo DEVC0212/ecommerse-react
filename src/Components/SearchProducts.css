@@ -1,0 +1,77 @@
+.box {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    /* max-height: 280px; */
+    border: 1px solid #ccc;
+    /* margin-top: 60px; */
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    margin: 6px;
+    /* margin-inline: 10px; */
+}
+
+
+.box .image {
+    background-color: rgb(246, 246, 245);
+    text-align: center;
+    height: 120px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease;
+}
+.box:hover .image{
+    transform: translateY(-30px);
+}
+
+
+.box img{
+    transition: transform 0.5s ease;
+}
+.box:hover img {
+    width: 30px;
+    height: 20px;
+    transform: scale(0.6) translateY(20px);
+}
+
+
+.box .text {
+    /* padding: 15px 5px 5px 20px; */
+    text-align: center;
+    transition: 0.5s ease;
+}
+.box:hover .text{
+    transform: translateY(-30px);
+}
+
+
+.box .price{
+    margin-top: 18px;
+    transition: 0.5s ease;
+}
+.box:hover .price{
+    transform: translateY(-30px);
+}
+
+
+.box .basket {
+    position: absolute;
+    bottom: -50px; 
+    left: 0;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    padding: 10px;
+    transition: bottom 0.5s ease; 
+}
+.box:hover .basket {
+    bottom: 0; /* Move the button up on hover */
+}
+
+
+.box .basket a{
+    color: white;
+    text-decoration: none;
+}

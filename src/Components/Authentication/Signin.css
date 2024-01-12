@@ -34,6 +34,10 @@ body {
     padding-inline: 10px;
 }
 
+.signin .name input:focus{
+    outline: none;
+}
+
 .signin #signin {
     padding: 15px;
     margin-bottom: 20px;

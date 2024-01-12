@@ -28,6 +28,9 @@ body{
     border: 1px solid rgb(210, 209, 209);
     padding-inline: 10px;
 }
+.signup .name input:focus{
+    outline: none;
+}
 .signup #signup{
     padding: 15px;
     margin-bottom: 20px;

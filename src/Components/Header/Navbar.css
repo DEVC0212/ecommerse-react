@@ -36,7 +36,7 @@ body {
     color: black;
 }
 
-.navbar .middle {
+.navbar .middle form{
     display: flex;
     align-items: center;
 }
@@ -47,13 +47,8 @@ body {
     border: 1px solid #ccc;
     transition: 0.3s;
 }
-
 .navbar .middle input:focus {
-    border-color: green !important;
-}
-
-.navbar .middle input::placeholder {
-    text-align: left;
+    outline: none;
 }
 
 .navbar .middle .icon {
