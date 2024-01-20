@@ -21,11 +21,11 @@ const Signup = (props) => {
                     <p>*Password</p>
                     <input type="password" placeholder='Your Password' />
                 </div>
-                <Button text="Sign Up" id="signup" spanEle={spanEle} />
+                <Button id="signup" spanEle={spanEle}>SignUp</Button>
                 <div className='already'>
                     <div className='already_account'>
                         <p>Already have an account?</p>
-                        <Button text="Sign In" id="signin" signinfunc={props.switchToSignin} />
+                        <Button id="signin" onClick={props.onClick}>Sign In</Button>
                     </div>
                 </div>
                 </form>

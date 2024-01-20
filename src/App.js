@@ -1,115 +1,156 @@
-import { useEffect, useState } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Footer from './Components/Footer/Footer';
-import Signup from './Components/Authentication/Signup';
-import Layout from './Components/Layout/Layout';
-import Home from './Components/Home/Home';
-import Signin from './Components/Authentication/Signin';
-import Shop from './Components/Shop';
-import FeaturedPageSection from './Components/FeaturedPages/FeaturedPageSection';
-import RecommendedPageSection from './Components/RecommendedPages/RecommendedPageSection';
-import SearchProducts from './Components/SearchProducts';
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Footer from "./Components/Footer/Footer";
+import Signup from "./Components/Authentication/Signup";
+// import Layout from './Components/Layout/Layout';
+import Home from "./Components/Home/Home";
+import Signin from "./Components/Authentication/Signin";
+import Shop from "./Components/Shop/Shop";
+import FeaturedPageSection from "./Components/FeaturedPages/FeaturedPageSection";
+import RecommendedPageSection from "./Components/RecommendedPages/RecommendedPageSection";
+// import SearchProducts from './Components/SearchProducts';
+import Cart from "./Components/Cart/Cart";
+import Navbar from "./Components/Header/Navbar";
+import { AuthContextProvider } from "./Components/Context/AuthContext";
+import ProductDetails from "./Components/ProductDetails";
+import SearchProducts from "./Components/SearchProducts/SearchProducts";
 
 const App = (props) => {
-  const [signup, setSignup] = useState(false);
-  const [signin, setSignin] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('')
-  const [filteredProduct , setFilteredProduct] = useState({});
+    const [searchQuery, setSearchQuery] = useState('')
+    const [filteredProduct , setFilteredProduct] = useState([{}]);
+    const [showCart, setShowCart] = useState(false);
+    const [totalAmount, setTotalAmount] = useState(0);
+    const [cartItem, setCartItem] = useState([]);
+    const [removeFromBasketButton, setRemoveFromBasketButton] = useState(false);
+    const searchQueryHandler = (searchQuery) => {
+      const filtered = props.productNames.filter(item=>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+        setFilteredProduct(filtered);
+        setSearchQuery(searchQuery);
+        console.log(filtered)
+    }
+  // const [shopDetails, setShopDetails] = useState(false);/
+  const [productDetail, setProductDetail] = useState({});
 
-  const signupHandler = () => {
-    setSignup(true);
-    setSignin(false);
+  // const displayBasketButtonHandler = () => {
+  //   setRemoveFromBasketButton(true);
+  // }
+  // const notDisplayBasketHandler = () =>{
+  //   setRemoveFromBasketButton(false);
+  // }
+  const showCartHandler = () => {
+    setShowCart(true);
+    // console.log('True');
   };
-
-  const signinHandler = () => {
-    setSignin(true);
-    setSignup(false);
+  const closeCartHandler = () => {
+    setShowCart(false);
   };
-
-  const switchToSignup = () => {
-    setSignup(true);
-    setSignin(false);
+  const addToCartHandler = (product) => {
+    setCartItem((prev) => {
+      const isProduct = prev.some((item) => item.id === product.id);
+      if (!isProduct) {
+        setRemoveFromBasketButton(true);
+        setTotalAmount((prev) => prev + product.price);
+        return [...prev, product];
+      } else {
+        setTotalAmount((prev) => prev + product.price);
+        return prev;
+      }
+    });
   };
-
-  const switchToSignin = () => {
-    setSignin(true);
-    setSignup(false);
+  const removeFromCartHandler = (product, quantity) => {
+    setRemoveFromBasketButton(false);
+    setTotalAmount((prev) => prev - quantity * product.price);
+    const filterdItems = cartItem.filter((item) => item.id !== product.id);
+    setCartItem(filterdItems);
   };
-  const resetHandler = () => {
-    setSignup(false);
-    setSignin(false);
-  }
-  const searchQueryHandler = (searchQuery) => {
-    setSearchQuery(searchQuery);   
-  }
-  useEffect(()=>{
-    const filtered = props.productNames.filter(item=>
-      item.name.toLowerCase().includes(searchQuery.toLowerCase()));
-      setFilteredProduct(filtered);
-  },[searchQuery,props.productNames]);
-  const router = createBrowserRouter([
-    { path: '/signup', element: 
-    <Layout
-    signupCheck={signup}
-    signinCheck={signin}
-    signupfunc={signupHandler}
-    signinfunc={signinHandler}><Signup switchToSignin={switchToSignin} /></Layout> },
-    { path: '/signin', element: 
-    <Layout
-        signupCheck={signup}
-        signinCheck={signin}
-        signupfunc={signupHandler}
-        signinfunc={signinHandler}><Signin switchToSignup={switchToSignup} /></Layout> },
-    {
-      path: '/', element: <Layout
-        signupCheck={signup}
-        signinCheck={signin}
-        signupfunc={signupHandler}
-        signinfunc={signinHandler}
-        searchQueryHandler={searchQueryHandler}>
-          <Home resetHandler={resetHandler} productNames={props.productNames} />
+  const minusButtonTotalAmountHandler = (quantity, price) => {
+    setTotalAmount((prev) => (quantity > 1 ? prev - price : prev));
+  };
+  const clearBasketHandler = () => {
+    setCartItem([]);
+    setTotalAmount(0);
+    setRemoveFromBasketButton(false);
+  };
+  const shopDetailsHandler = (product) => {
+    // setShopDetails(true);
+    setProductDetail(product);
+  };
+  // const backToShopHandler = () => {
+  //   setShopDetails(false);
+  // }
+  return (
+    <>
+      {/* <RouterProvider router={router}></RouterProvider> */}
+      {showCart && (
+        <Cart
+          onClose={closeCartHandler}
+          onOpen={showCartHandler}
+          cartItems={cartItem}
+          totalAmount={totalAmount}
+          addToCartHandler={addToCartHandler}
+          minusButtonTotalAmountHandler={minusButtonTotalAmountHandler}
+          removeFromCartHandler={removeFromCartHandler}
+          clearBasketHandler={clearBasketHandler}
+          // notDisplayBasketHandler={notDisplayBasketHandler}
+        />
+      )} 
+      <Router>
+        <AuthContextProvider>
+          <Navbar
+            onOpen={showCartHandler}
+            cartItems={cartItem}
+            onClick={closeCartHandler}
+            searchQueryHandler={searchQueryHandler}
+          />
+        </AuthContextProvider>
+        { !searchQuery && <Routes>
+          <Route
+            path="/"
+            element={
+                <Home
+                  productNames={props.productNames}
+                  onClick={closeCartHandler}
+                  shopDetailsHandler={shopDetailsHandler}
+                />
+            }
+            // element={<Home productNames={props.productNames} />}
+          />
+          <Route
+            path="/shop"
+            element={
+                <Shop
+                  productNames={props.productNames}
+                  addToCartHandler={addToCartHandler}
+                  removeFromCartHandler={removeFromCartHandler}
+                  removeFromBasketButton={removeFromBasketButton}
+                  shopDetailsHandler={shopDetailsHandler}
+                  // displayBasketButtonHandler={displayBasketButtonHandler}
+                  // notDisplayBasketHandler={notDisplayBasketHandler}
+                />
+            }
+          />
+          <Route path="/shop/product" element={<ProductDetails product={productDetail}
+                  addToCartHandler={addToCartHandler} />} />
+          <Route
+            path="/featured"
+            element={<FeaturedPageSection productNames={props.productNames} />}
+          />
+          <Route
+            path="/recommended"
+            element={
+              <RecommendedPageSection productNames={props.productNames} />
+            }
+          />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+        </Routes>
+        }
+        {searchQuery && <SearchProducts filteredProduct={filteredProduct} />}
         <Footer />
-      </Layout>
-    },
-    {
-      path: '/shop', element: <Layout
-        signupCheck={signup}
-        signinCheck={signin}
-        signupfunc={signupHandler}
-        signinfunc={signinHandler}>
-          <Shop resetHandler={resetHandler} />
-        <Footer />
-      </Layout>
-    },
-    { path: '/featured', element: <Layout
-    signupCheck={signup}
-    signinCheck={signin}
-    signupfunc={signupHandler}
-    signinfunc={signinHandler}>
-      <FeaturedPageSection resetHandler={resetHandler} productNames={props.productNames} />
-    <Footer />
-  </Layout> },
-    { path: '/recommended', element: <Layout
-    signupCheck={signup}
-    signinCheck={signin}
-    signupfunc={signupHandler}
-    signinfunc={signinHandler}>
-      <RecommendedPageSection resetHandler={resetHandler} productNames={props.productNames} />
-    <Footer />
-  </Layout> },
-    { path: '/search', element: <Layout
-    signupCheck={signup}
-    signinCheck={signin}
-    signupfunc={signupHandler}
-    signinfunc={signinHandler}
-    productNames={props.productNames}>
-      <SearchProducts resetHandler={resetHandler} productNames={props.productNames} filteredProduct={filteredProduct}  />
-    <Footer />
-  </Layout> }
-
-  ]);
-
-  return <RouterProvider router={router} />;
+      </Router>
+    </>
+  );
 };
 
 export default App;

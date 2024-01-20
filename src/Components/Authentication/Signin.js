@@ -16,11 +16,11 @@ const Signin = (props) => {
                     <p>*Password</p>
                     <input type="password" placeholder='Your Password' />
                 </div>
-                <Button text="Sign In" id="signin" spanEle={spanEle} />
+                <Button id="signin" spanEle={spanEle}>Sign In</Button>
                 <div className='already'>
                     <div className='already_account'>
                         <p>Not have an account?</p>
-                        <Button text="Sign Up" id="signup" signupfunc={props.switchToSignup} />
+                        <Button id="signup" onClick={props.onClick}>Sign Up</Button>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 // import {useEffect} from 'react';
 import Navbar from "../Header/Navbar";
 
-const Layout = ({ children, signupCheck, signinCheck, signupfunc, signinfunc, searchQueryHandler, productNames }) => {
+const Layout = ({ children, signupCheck, signinCheck, signupfunc, signinfunc, searchQueryHandler, productNames, cartHandler }) => {
   return (
     <>
       <div>
@@ -11,7 +11,9 @@ const Layout = ({ children, signupCheck, signinCheck, signupfunc, signinfunc, se
           signinfunc={signinfunc}
           signinCheck={signinCheck}
           searchQueryHandler={searchQueryHandler}  
-          productNames={productNames}/>
+          productNames={productNames}
+          cartHandler={cartHandler}
+          />
         {children}
       </div>
     </>

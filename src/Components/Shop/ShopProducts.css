@@ -38,9 +38,12 @@
 
 
 .box .text {
-    /* padding: 15px 5px 5px 20px; */
+    padding: 15px 5px 5px 20px;
     text-align: center;
     transition: 0.5s ease;
+}
+.box .text i{
+    font-size: 12px;
 }
 .box:hover .text{
     transform: translateY(-30px);
@@ -59,19 +62,24 @@
 .box .basket {
     position: absolute;
     bottom: -50px; 
-    left: 0;
+    left: 0%;
+    /* max-height: 100%; */
     width: 100%;
     background-color: black;
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
     transition: bottom 0.5s ease; 
 }
-.box:hover .basket {
-    bottom: 0; /* Move the button up on hover */
-}
-
-
-.box .basket a{
+.box .basket Button{
+    width: 100%;
+    height: 100%;
+    padding: 15px 0px;
+    background: none;
+    border: none;
     color: white;
-    text-decoration: none;
+    cursor: pointer;
+
+}
+.box:hover .basket {
+    bottom: 0%;
 }

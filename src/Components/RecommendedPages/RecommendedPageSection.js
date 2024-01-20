@@ -1,7 +1,7 @@
 import RecommendedPage from "./RecommendedPage";
 import FeaturedSunglass from "../Body/FeaturedSunglass";
 const RecommendedPageSection = (props) => {
-    props.resetHandler();
+    // props.resetHandler();
     const productStyle = {
         display: 'flex',
         justifyContent: 'space-around',
@@ -10,7 +10,7 @@ const RecommendedPageSection = (props) => {
         margin: 'auto'
       }
       const recommendedProductStyle = {
-        marginTop: "120px"
+        marginTop: "50px"
       }
     return (
         <>

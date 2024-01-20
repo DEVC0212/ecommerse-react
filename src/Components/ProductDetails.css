@@ -1,0 +1,121 @@
+.back{
+    position: absolute;
+    top: 130px;
+    left: 130px;
+    transition: 0.5s ease;
+    cursor: pointer;
+    padding: 15px;
+    /* padding: 250px 0px 0px 50px; */
+}
+a{
+    color: black;
+}
+.product-detail{
+    max-width: 80%;
+    /* position: absolute; */
+    /* bottom: 10%; */
+    margin: 200px auto auto auto;
+    display: flex;
+    /* justify-content: end; */
+    /* align-items: end; */
+    /* justify-content: center; */
+    background-color: red;
+    height: 500px;
+    border: 1px solid rgb(217, 212, 212);
+}
+.product-detail .left{
+    height: 100%;
+    min-width: 11%;
+    background-color: white;
+}
+.product-detail .middle{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(230, 227, 227);
+}
+.product-detail .right{
+    padding: 25px;
+    max-width: 80%;
+    background-color: white;
+}
+.product-detail .right p{
+    margin: 20px 0px;
+}
+#lens{
+    display: inline-block;
+    margin: 20px 0px;
+}
+.product-detail .right .select{
+    text-align: left;
+    /* padding: 15px 0px; */
+}
+select{
+    padding: 8px 210px;
+}
+hr{
+    border: 0.5px solid rgb(155, 150, 150);
+}
+#color{
+    margin: 20px 0px 10px;
+    display: inline-block;
+}
+#price{
+    margin: 20px 0px;
+}
+#shopdetail{
+    padding: 15px 15px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.imageDetail  img{
+    object-fit: cover;
+    width: 120px;
+    height: 80px;
+}
+.imageDetail {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(206, 201, 201);
+    margin: 10px 6px;
+}
+.middle img{
+    object-fit: cover;
+    width: 500px;
+    height: 300px;
+}
+
+.colors{
+    display: flex;
+}
+.colors div{
+    width: 40px;
+    height: 40px;
+    /* background-color: red; */
+    margin: 5px 15px 0px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.colors div:hover{
+    transform: scale(1.1);
+}
+#div1{
+    background-color: red;
+}
+#div2{
+    background-color: rgb(197, 97, 114);
+}
+#div3{
+    background-color: blue;
+}
+#div4{
+    background-color: yellow;
+}
+#div5{
+    background-color: green;
+}

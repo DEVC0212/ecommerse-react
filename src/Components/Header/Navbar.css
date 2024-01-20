@@ -1,5 +1,5 @@
 body {
-    height: 200vh;
+    /* height: 200vh; */
     margin: 0; /* Remove default body margin */
 }
 
@@ -7,13 +7,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 0px;
+    padding: 5px 0px;
     position: fixed;
     z-index: 1000;
     width: 100%;
     top: 0;
     background-color: #ffffff;
     border-bottom: 1px solid rgb(224, 219, 219);
+    z-index: 1;
 }
 
 .navbar .left ul {
@@ -25,18 +26,24 @@ body {
 .navbar .left ul li {
     list-style-type: none;
     margin: 0px 20px;
+    padding: 10px;
+    transition: 0.5s ease;
+    border-radius: 5px;
+}
+.navbar .left ul li:hover {
+    background-color: #f2f1f1;
 }
 
 .navbar .left ul li a {
     color: rgb(131, 122, 122);
     text-decoration: none;
 }
-.navbar .left ul li .activeLink{
-    /* font-weight: 700; */
+.navbar .left ul li a.active{
     color: black;
 }
 
-.navbar .middle form{
+
+.navbar .middle {
     display: flex;
     align-items: center;
 }
@@ -53,16 +60,31 @@ body {
 
 .navbar .middle .icon {
     margin: 10px;
-    padding: 5px;
-    font-size: 25px;
+    /* padding: 5px; */
+    font-size: 20px;
     color: black;
+}
+.navbar .middle .cart-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+}
+.navbar .middle .cart-button:hover{
+    background-color: rgb(249, 243, 243);
+}
+.navbar .middle button{
+    cursor: pointer;
+    background: none;
+    border: none;
+    margin-left: 5px;
 }
 
 .navbar .right button {
     font-size: 12px;
     border: none; /* Remove border */
     padding: 17px;
-    margin-right: 20px; /* Adjust as needed */
+    margin-right: 20px; 
     cursor: pointer;
 }
 

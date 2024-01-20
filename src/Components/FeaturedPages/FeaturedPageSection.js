@@ -1,7 +1,7 @@
 import FeaturedPage from "./FeaturedPage";
 import FeaturedSunglass from "../Body/FeaturedSunglass";
 const FeaturedPageSection = (props) => {
-    props.resetHandler();
+    // props.resetHandler();
     const productStyle = {
         display: 'flex',
         justifyContent: 'space-around',
@@ -10,7 +10,7 @@ const FeaturedPageSection = (props) => {
         margin: 'auto'
       }
       const featuredProductStyle = {
-        marginTop: "120px"
+        marginTop: "50px"
       }
     return (
         <>
