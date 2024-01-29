@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../Button/Button";
 import "./ShopProducts.css";
 import { Link } from "react-router-dom";
+import AddToCart from "../Context/AddToCart";
 
 const ShopProducts = (props) => {
+  const {addToCartHandler,removeFromCartHandler,shopDetailsHandler} = useContext(AddToCart);
   const [removeFromBasketButton, setRemoveFromBasketButton] = useState(false);
 
   const imageStyle = {
@@ -13,13 +15,13 @@ const ShopProducts = (props) => {
 
   const style = {
     backgroundColor: removeFromBasketButton ? "grey" : "black",
-    transition: "0.5s ease",
+    transition: "0.5s ease"
   };
 
   return (
     <>
       <div className="box">
-        <Link to='/shop/product' style={{textDecoration: 'none'}}><section onClick={()=>props.shopDetailsHandler({price: props.price, image: props.image, name:props.name, style:props.style})}>
+        <Link to='/shop/product' style={{textDecoration: 'none'}}><section onClick={()=>shopDetailsHandler(props)}>
         <div className="image">
           <img src={props.image} style={imageStyle} alt={props.name} />
         </div>
@@ -32,10 +34,10 @@ const ShopProducts = (props) => {
         </div>
         </section></Link>
         <div className="basket">
-          {!removeFromBasketButton && !props.removeFromBasketButton ? (
+          {!removeFromBasketButton ? (
             <Button
               onClick={() => {
-                props.addToCartHandler({
+                addToCartHandler({
                   id: props.id,
                   name: props.name,
                   style: props.style,
@@ -52,13 +54,13 @@ const ShopProducts = (props) => {
           ) : (
             <Button
               onClick={() => {
-                props.removeFromCartHandler({
+                removeFromCartHandler({
                   id: props.id,
                   name: props.name,
                   style: props.style,
                   image: props.image,
-                  price: props.price,
-                },props.quantity);
+                  price: props.price},
+                  props.quantity);
                 // props.notDisplayBasketHandler()
                 setRemoveFromBasketButton(false);
               }}

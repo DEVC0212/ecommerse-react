@@ -1,6 +1,6 @@
 import Button from '../Button/Button';
 import './Signin.css';
-const Signin = (props) => {
+const Signin = () => {
     const spanEle = <span>&rarr;</span>;
     return (
         <>
@@ -20,7 +20,7 @@ const Signin = (props) => {
                 <div className='already'>
                     <div className='already_account'>
                         <p>Not have an account?</p>
-                        <Button id="signup" onClick={props.onClick}>Sign Up</Button>
+                        <Button id="signup">Sign Up</Button>
                     </div>
                 </div>
             </div>

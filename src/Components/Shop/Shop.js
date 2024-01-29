@@ -12,7 +12,7 @@ const Shop = (props) => {
             <span style={divStyle}>
                 {
                     props.productNames.map((item) => (
-                        <ShopProducts key={item.id} id={item.id} image={item.image} name={item.name} style={item.style} price={item.price} quantity={item.quantity} addToCartHandler={props.addToCartHandler} removeFromCartHandler={props.removeFromCartHandler} removeFromBasketButton={props.removeFromBasketButton} shopDetailsHandler={props.shopDetailsHandler} />
+                        <ShopProducts key={item.id} id={item.id} image={item.image} name={item.name} style={item.style} price={item.price} quantity={item.quantity} />
                     ))
                 }
             </span>

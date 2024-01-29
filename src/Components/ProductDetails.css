@@ -1,4 +1,4 @@
-.back{
+.backDetail{
     position: absolute;
     top: 130px;
     left: 130px;
@@ -23,12 +23,12 @@ a{
     height: 500px;
     border: 1px solid rgb(217, 212, 212);
 }
-.product-detail .left{
+.product-detail .leftDetail{
     height: 100%;
     min-width: 11%;
     background-color: white;
 }
-.product-detail .middle{
+.product-detail .middleDetail{
     height: 100%;
     width: 60%;
     display: flex;
@@ -36,19 +36,19 @@ a{
     align-items: center;
     background-color: rgb(230, 227, 227);
 }
-.product-detail .right{
+.product-detail .rightDetail{
     padding: 25px;
     max-width: 80%;
     background-color: white;
 }
-.product-detail .right p{
+.product-detail .rightDetail p{
     margin: 20px 0px;
 }
-#lens{
+#lensDetail{
     display: inline-block;
     margin: 20px 0px;
 }
-.product-detail .right .select{
+.product-detail .rightDetail .selectDetail{
     text-align: left;
     /* padding: 15px 0px; */
 }
@@ -58,11 +58,11 @@ select{
 hr{
     border: 0.5px solid rgb(155, 150, 150);
 }
-#color{
+#colorDetail{
     margin: 20px 0px 10px;
     display: inline-block;
 }
-#price{
+#priceDetail{
     margin: 20px 0px;
 }
 #shopdetail{
@@ -83,16 +83,16 @@ hr{
     border: 1px solid rgb(206, 201, 201);
     margin: 10px 6px;
 }
-.middle img{
+.middleDetail img{
     object-fit: cover;
     width: 500px;
     height: 300px;
 }
 
-.colors{
+.colorsDetail{
     display: flex;
 }
-.colors div{
+.colorsDetail div{
     width: 40px;
     height: 40px;
     /* background-color: red; */
@@ -101,7 +101,7 @@ hr{
     cursor: pointer;
 }
 
-.colors div:hover{
+.colorsDetail div:hover{
     transform: scale(1.1);
 }
 #div1{

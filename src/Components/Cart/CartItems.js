@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './CartItems.css';
+import AddToCart from '../Context/AddToCart';
 const CartItems = (props) => {
+    const {addToCartHandler,removeFromCartHandler,minusButtonTotalAmountHandler} = useContext(AddToCart);
     const [quantity, setQuantity] = useState(1);
-    // const [removeFromBasketButton, setRemoveFromBasketButton] = useState(false);
+    const [isClicked, setISClicked] = useState(false);
     const imageStyle = {
         maxWidth: '70px',
         height: '50px',
@@ -26,8 +28,8 @@ const CartItems = (props) => {
         <>
             <div className='cart__items'>
                     <div className='buttons'>
-                        <div><button onClick={()=>{props.addToCartHandler(props); addQuantityHandler() }}>+</button></div>
-                        <div><button id='minus' style={buttonStyle} onClick={()=>{minusQuantityHandler(); props.minusButtonTotalAmountHandler(quantity,props.price) }}>-</button></div>
+                        <div><button onClick={()=>{addToCartHandler(props); addQuantityHandler() }}>+</button></div>
+                        <div><button id='minus' style={buttonStyle} onClick={()=>{minusQuantityHandler(); minusButtonTotalAmountHandler(quantity,props.price) }}>-</button></div>
                     </div>
                     <div className='image'>
                         <img src={props.image} style={imageStyle} />
@@ -51,7 +53,7 @@ const CartItems = (props) => {
                         <h4>${props.price}.00</h4>
                     </div>
                     <div className='clear'>
-                        <button onClick={()=>{props.removeFromCartHandler(props,quantity);}}>X</button>
+                        <button onClick={()=>{removeFromCartHandler(props,quantity); setISClicked(true);}}>X</button>
                     </div>
                 </div>
         </>

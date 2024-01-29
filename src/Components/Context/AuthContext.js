@@ -5,6 +5,8 @@ export const AuthContext = createContext(null);
 export const AuthContextProvider = (props) => {
     const [isSignedUp, setIsSignedUp] = useState(false);
     const [isSignedIn, setIsSignedIn] = useState(false);
+    const [signup,setSignup] = useState(false);
+    const [signin,setSignin] = useState(false);
 
     const signupHandler = () => {
         setIsSignedUp(true);
@@ -14,7 +16,15 @@ export const AuthContextProvider = (props) => {
         setIsSignedIn(true);
         setIsSignedUp(false);   
     }
-    const contextValue = {isSignedUp,isSignedIn,signupHandler,signinHandler}
+    const showSignupHandler = () => {
+        setSignup(true);
+        setSignin(false);
+    }
+    const showSigninHandler = () => {
+        setSignin(true);
+        setSignup(false);
+    }
+    const contextValue = {isSignedUp,isSignedIn,signup,signin,signupHandler,signinHandler,showSignupHandler,showSigninHandler}
     return(
         <AuthContext.Provider value={contextValue}>{props.children}</AuthContext.Provider>
     )

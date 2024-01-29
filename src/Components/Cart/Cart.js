@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import CartItems from './CartItems';
 import './CartItems.css';
+import AddToCart from '../Context/AddToCart';
 const Cart = (props) => {
+    const {showCartHandler,closeCartHandler,cartItems,totalAmount,clearBasketHandler} = useContext(AddToCart);
     const cartStyle = {
         width: '38%',
         position: 'fixed',
-        right: props.onOpen ? '0%' : '-100%',  // Use props.isOpen to control right position
+        right: showCartHandler ? '0%' : '-100%',  // Use props.isOpen to control right position
         top: '0%',
         backgroundColor: 'white',
         height: '100%',
@@ -13,8 +15,8 @@ const Cart = (props) => {
         transition: 'right 1s ease',
     };
     const buttonStyle = {
-        cursor: props.cartItems.length === 0 ? 'not-allowed' : 'pointer',
-        color: props.cartItems.length === 0 ? 'grey' : 'black'
+        cursor: cartItems.length === 0 ? 'not-allowed' : 'pointer',
+        color: cartItems.length === 0 ? 'grey' : 'black'
     }
     // const addTotalAmount = (price) => {
     //     setTotalAmount((prev)=>{
@@ -39,22 +41,22 @@ const Cart = (props) => {
                 <div className="cart__top">
                     <div className='cart__top__heading'>
                         <span id='head'>My Basket</span>
-                        <span>({props.cartItems.length} item)</span>
+                        <span>({cartItems.length} item)</span>
                     </div>
                     <div className='cart__top__heading'>
-                        <button onClick={props.onClose}>Close</button>
-                        <button onClick={()=>{props.clearBasketHandler()}} style={buttonStyle}>Clear Basket</button>
+                        <button onClick={closeCartHandler}>Close</button>
+                        <button onClick={()=>{clearBasketHandler()}} style={buttonStyle}>Clear Basket</button>
                     </div>
                 </div>
                 {/* <div>Your basket is empty</div> */}
                 {
-                    props.cartItems.map((product) => <CartItems key={product.id} id={product.id} name={product.name} image={product.image} price={product.price} addToCartHandler={props.addToCartHandler} minusButtonTotalAmountHandler={props.minusButtonTotalAmountHandler} removeFromCartHandler={props.removeFromCartHandler} />)
+                    cartItems.map((product) => <CartItems key={product.id} id={product.id} name={product.name} image={product.image} price={product.price} quantity={product.quantity} />)
                 }
                 <div className='border'></div>
                 <div className="cart__bottom">
                     <div className='total'>
                         <p>Subtotal Amount:</p>
-                        <h3>${props.totalAmount}.00</h3>
+                        <h3>${totalAmount}.00</h3>
                     </div>
                     <div>
                         <button>CHECK OUT</button>
