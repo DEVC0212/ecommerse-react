@@ -1,10 +1,22 @@
 import { Link } from 'react-router-dom';
 // import Image from './Images/img1.png';
 import './ProductDetails.css';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import AddToCart from './Context/AddToCart';
+import Button from './Button/Button';
 const ProductDetails = () => {
     const {addToCartHandler,productDetail} = useContext(AddToCart);
+    const [removeFromBasketButton, setRemoveFromBasketButton] = useState(false);
+    const removeBasketHandler = () => {
+        setRemoveFromBasketButton(true);
+    }
+    const removeBasketHandlerForTrue = () => {
+        setRemoveFromBasketButton(false);
+    }
+    const style = {
+        backgroundColor: removeFromBasketButton ? "grey" : "black",
+        transition: "2s ease"
+      };
     return (
         <>
         <Link to='/shop'><div className='backDetail'>&larr;Back to Shop</div></Link>
@@ -36,7 +48,9 @@ const ProductDetails = () => {
                         <div id='div5'></div>
                     </div>
                     <h1 id='priceDetail'>${productDetail.price}.00</h1>
-                    <button id='shopdetail' onClick={()=>{addToCartHandler(productDetail)}}>Add to Basket</button>
+
+                    {!removeFromBasketButton && <Button id='shopdetail' onClick={()=>{addToCartHandler(productDetail); removeBasketHandler();}}>Add to Basket</Button>}
+                    {removeFromBasketButton && <Button id='shopdetail' onClick={()=>{addToCartHandler(productDetail); removeBasketHandlerForTrue();}} style={style}>Remove from Basket</Button>}
                 </div>
             </div>
         </>

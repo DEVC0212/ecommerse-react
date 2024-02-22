@@ -1,5 +1,6 @@
 import RecommendedPage from "./RecommendedPage";
 import FeaturedSunglass from "../Body/FeaturedSunglass";
+import { Link } from "react-router-dom";
 const RecommendedPageSection = (props) => {
     // props.resetHandler();
     const productStyle = {
@@ -17,14 +18,18 @@ const RecommendedPageSection = (props) => {
         <RecommendedPage />
         <div style={recommendedProductStyle}>
         <div style={productStyle}>
-          <FeaturedSunglass productName={props.productNames[0]} img={props.productNames[6].image} />
-          <FeaturedSunglass productName={props.productNames[1]} img={props.productNames[7].image} />
-          <FeaturedSunglass productName={props.productNames[2]} img={props.productNames[8].image} />
+          {props.productNames.slice(6,9).map((product,index)=>(
+            <Link to={`/shop/product/${product.id}`} key={index} >
+              <FeaturedSunglass productName={product} />
+            </Link>
+          ))}
         </div>
         <div style={productStyle}>
-          <FeaturedSunglass productName={props.productNames[3]} img={props.productNames[9].image} />
-          <FeaturedSunglass productName={props.productNames[4]} img={props.productNames[10].image} />
-          <FeaturedSunglass productName={props.productNames[5]} img={props.productNames[11].image} />
+        {props.productNames.slice(9,12).map((product,index)=>(
+            <Link to={`/shop/product/${product.id}`} key={index} >
+              <FeaturedSunglass productName={product} />
+            </Link>
+          ))}
         </div>
         </div>
         </>

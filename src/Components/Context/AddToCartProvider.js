@@ -7,11 +7,12 @@ export const AddToCartProvider = ({children}) => {
     const [totalAmount, setTotalAmount] = useState(0);
     const [productDetail, setProductDetail] = useState({});
     const [filteredProduct , setFilteredProduct] = useState([]);
-    const [newRemoveFromBasketButton, setNewRemoveFromBasketButton] = useState(false);
+    const [enableRemoveFromBasketButton, setEnableRemoveFromBasketButton] = useState(false);
 
-    const removeBasketHandler = () => {
-        setNewRemoveFromBasketButton(true);
-    }
+    // const [newRemoveFromBasketButton, setNewRemoveFromBasketButton] = useState(false);
+    // const removeBasketHandler = () => {
+    //     setNewRemoveFromBasketButton(true);
+    // }
     const showCartHandler = () => {
         setShowCart(true);
       };
@@ -37,6 +38,7 @@ export const AddToCartProvider = ({children}) => {
         setTotalAmount((prev) => prev - quantity * product.price);
         const filterdItems = cartItems.filter((item) => item.id !== product.id);
         setCartItems(filterdItems);
+        setEnableRemoveFromBasketButton(false);
       };
 
       const minusButtonTotalAmountHandler = (quantity, price) => {
@@ -55,10 +57,9 @@ export const AddToCartProvider = ({children}) => {
       
 
       return(
-        <AddToCart.Provider value={{showCart,cartItems,totalAmount,filteredProduct,setFilteredProduct,productDetail,showCartHandler,closeCartHandler,addToCartHandler,removeFromCartHandler,minusButtonTotalAmountHandler,clearBasketHandler,shopDetailsHandler}}>   
+        <AddToCart.Provider value={{showCart,cartItems,totalAmount,filteredProduct,setFilteredProduct,productDetail,showCartHandler,closeCartHandler,addToCartHandler,removeFromCartHandler,minusButtonTotalAmountHandler,clearBasketHandler,shopDetailsHandler,enableRemoveFromBasketButton,setEnableRemoveFromBasketButton}}>   
         {children}
         </AddToCart.Provider>
       )
 }
-
 // export default AddToCartProvider;

@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 import AddToCart from "../Context/AddToCart";
 
 const ShopProducts = (props) => {
-  const {addToCartHandler,removeFromCartHandler,shopDetailsHandler} = useContext(AddToCart);
-  const [removeFromBasketButton, setRemoveFromBasketButton] = useState(false);
-
+  const {addToCartHandler,removeFromCartHandler,shopDetailsHandler,enableRemoveFromBasketButton,setEnableRemoveFromBasketButton} = useContext(AddToCart);
+  const [removeFromBasketButton, setRemoveFromBasketButton] = useState(enableRemoveFromBasketButton);
   const imageStyle = {
     width: "160px",
     height: "90px",
@@ -21,7 +20,7 @@ const ShopProducts = (props) => {
   return (
     <>
       <div className="box">
-        <Link to='/shop/product' style={{textDecoration: 'none'}}><section onClick={()=>shopDetailsHandler(props)}>
+        <Link to={`/shop/product/${props.id}`} style={{textDecoration: 'none'}}><section onClick={()=>shopDetailsHandler(props)}>
         <div className="image">
           <img src={props.image} style={imageStyle} alt={props.name} />
         </div>
@@ -34,7 +33,7 @@ const ShopProducts = (props) => {
         </div>
         </section></Link>
         <div className="basket">
-          {!removeFromBasketButton ? (
+          {(!removeFromBasketButton && !enableRemoveFromBasketButton) ? (
             <Button
               onClick={() => {
                 addToCartHandler({
@@ -47,11 +46,12 @@ const ShopProducts = (props) => {
                 });
                 // props.displayBasketButtonHandler();
                 setRemoveFromBasketButton(true);
+                setEnableRemoveFromBasketButton(true);
               }}
             >
               Add to basket
             </Button>
-          ) : (
+          ) : enableRemoveFromBasketButton ?  (
             <Button
               onClick={() => {
                 removeFromCartHandler({
@@ -63,12 +63,13 @@ const ShopProducts = (props) => {
                   props.quantity);
                 // props.notDisplayBasketHandler()
                 setRemoveFromBasketButton(false);
+                setEnableRemoveFromBasketButton(false);
               }}
               style={style}
             >
               Remove from basket
             </Button>
-          )}
+          ): null}
         </div>
       </div>
     </>

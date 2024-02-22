@@ -6,7 +6,7 @@ body {
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 5px 0px;
     position: fixed;
     z-index: 1000;
@@ -46,38 +46,45 @@ body {
 .navbar .middle {
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ccc;
 }
 
 .navbar .middle input {
-    padding: 10px;
+    margin-left: 15px;
+    border: none;
     width: 250px;
-    border: 1px solid #ccc;
     transition: 0.3s;
 }
 .navbar .middle input:focus {
     outline: none;
 }
 
-.navbar .middle .icon {
-    margin: 10px;
+.navbar .icon {
+    /* margin: 10px; */
     /* padding: 5px; */
     font-size: 20px;
     color: black;
 }
-.navbar .middle .cart-button{
+.navbar .cart-button{
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.3s ease;
+    position: relative;
 }
-.navbar .middle .cart-button:hover{
+.navbar .cart-button button{
+    padding: 13px 19px 13px 19px;
+}
+.navbar .cart-button button:hover{
     background-color: rgb(249, 243, 243);
 }
-.navbar .middle button{
+.navbar .cart-button button{
     cursor: pointer;
     background: none;
     border: none;
-    margin-left: 5px;
+    margin-left: -75px;
 }
 
 .navbar .right button {
@@ -91,4 +98,19 @@ body {
 .navbar .right #signup {
     background-color: black;
     color: white;
+}
+
+.navbar .right .profilePicture{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.navbar .right .profilePicture:hover{
+    cursor: pointer;
+}
+
+.navbar .right .profilePicture span{
+    margin-inline: 10px;
 }

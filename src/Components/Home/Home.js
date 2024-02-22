@@ -3,6 +3,7 @@ import Body from '../Body/Body';
 import Featured from '../Body/Featured';
 import FeaturedSunglass from '../Body/FeaturedSunglass';
 import AddToCart from '../Context/AddToCart';
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
   const {closeCartHandler} = useContext(AddToCart);
@@ -23,9 +24,11 @@ const Home = (props) => {
         <Body />
         <Featured text="Featured Products" link="/featured" />
         <div style={productStyle}>
-          <FeaturedSunglass productName={props.productNames[0]} img={props.productNames[0].image} />
-          <FeaturedSunglass productName={props.productNames[1]} img={props.productNames[1].image} />
-          <FeaturedSunglass productName={props.productNames[2]} img={props.productNames[2].image} />
+          {props.productNames.slice(0,3).map(product=>(
+            <Link to={`/shop/product/${product.id}`} key={product.id}>
+              <FeaturedSunglass productName={product} />
+            </Link>
+          ))}
         </div>
         <div style={productStyle}>
           <FeaturedSunglass productName={props.productNames[3]} img={props.productNames[3].image} />

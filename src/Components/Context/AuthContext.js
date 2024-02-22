@@ -24,7 +24,7 @@ export const AuthContextProvider = (props) => {
         setSignin(true);
         setSignup(false);
     }
-    const contextValue = {isSignedUp,isSignedIn,signup,signin,signupHandler,signinHandler,showSignupHandler,showSigninHandler}
+    const contextValue = {isSignedUp,isSignedIn,setIsSignedIn,setIsSignedUp,signup,signin,signupHandler,signinHandler,showSignupHandler,showSigninHandler}
     return(
         <AuthContext.Provider value={contextValue}>{props.children}</AuthContext.Provider>
     )
