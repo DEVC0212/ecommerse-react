@@ -19,16 +19,12 @@ const RecommendedPageSection = (props) => {
         <div style={recommendedProductStyle}>
         <div style={productStyle}>
           {props.productNames.slice(6,9).map((product,index)=>(
-            <Link to={`/shop/product/${product.id}`} key={index} >
               <FeaturedSunglass productName={product} />
-            </Link>
           ))}
         </div>
         <div style={productStyle}>
         {props.productNames.slice(9,12).map((product,index)=>(
-            <Link to={`/shop/product/${product.id}`} key={index} >
               <FeaturedSunglass productName={product} />
-            </Link>
           ))}
         </div>
         </div>

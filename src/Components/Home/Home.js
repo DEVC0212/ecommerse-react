@@ -25,26 +25,24 @@ const Home = (props) => {
         <Featured text="Featured Products" link="/featured" />
         <div style={productStyle}>
           {props.productNames.slice(0,3).map(product=>(
-            <Link to={`/shop/product/${product.id}`} key={product.id}>
               <FeaturedSunglass productName={product} />
-            </Link>
           ))}
         </div>
         <div style={productStyle}>
-          <FeaturedSunglass productName={props.productNames[3]} img={props.productNames[3].image} />
-          <FeaturedSunglass productName={props.productNames[4]} img={props.productNames[4].image} />
-          <FeaturedSunglass productName={props.productNames[5]} img={props.productNames[5].image} />
+        {props.productNames.slice(3,6).map(product=>(
+              <FeaturedSunglass productName={product} />
+          ))}
         </div>
         <Featured text="Recommended Products" link="/recommended" />
         <div style={productStyle}>
-          <FeaturedSunglass productName={props.productNames[6]} img={props.productNames[6].image} />
-          <FeaturedSunglass productName={props.productNames[7]} img={props.productNames[7].image} />
-          <FeaturedSunglass productName={props.productNames[8]} img={props.productNames[8].image} />
+        {props.productNames.slice(6,9).map(product=>(
+              <FeaturedSunglass productName={product} />
+          ))}
         </div>
         <div style={productStyle}>
-          <FeaturedSunglass productName={props.productNames[9]} img={props.productNames[9].image} />
-          <FeaturedSunglass productName={props.productNames[10]} img={props.productNames[10].image} />
-          <FeaturedSunglass productName={props.productNames[11]} img={props.productNames[11].image} />
+        {props.productNames.slice(9,12).map(product=>(
+              <FeaturedSunglass productName={product} />
+          ))}
         </div>
       </div>
     </>

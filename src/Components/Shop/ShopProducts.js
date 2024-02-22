@@ -3,15 +3,29 @@ import Button from "../Button/Button";
 import "./ShopProducts.css";
 import { Link } from "react-router-dom";
 import AddToCart from "../Context/AddToCart";
+import { IoCheckmark } from "react-icons/io5";
+import { hover } from "@testing-library/user-event/dist/hover";
 
 const ShopProducts = (props) => {
   const {addToCartHandler,removeFromCartHandler,shopDetailsHandler,enableRemoveFromBasketButton,setEnableRemoveFromBasketButton} = useContext(AddToCart);
   const [removeFromBasketButton, setRemoveFromBasketButton] = useState(enableRemoveFromBasketButton);
+  const [rightTick, setRightTick] = useState(false);
   const imageStyle = {
     width: "160px",
     height: "90px",
   };
 
+  const tickStyle = {
+    position: 'absolute',
+    right: '0',
+    top: '0',
+    color: 'green',
+    fontSize: '22px',
+    zIndex: '1'
+  }
+  const boxTickStyle = {
+    border: rightTick && '1px solid black'
+  }
   const style = {
     backgroundColor: removeFromBasketButton ? "grey" : "black",
     transition: "0.5s ease"
@@ -19,7 +33,8 @@ const ShopProducts = (props) => {
 
   return (
     <>
-      <div className="box">
+      <div className="box" style={boxTickStyle}>
+      {rightTick && <IoCheckmark style={tickStyle} />}
         <Link to={`/shop/product/${props.id}`} style={{textDecoration: 'none'}}><section onClick={()=>shopDetailsHandler(props)}>
         <div className="image">
           <img src={props.image} style={imageStyle} alt={props.name} />
@@ -47,6 +62,7 @@ const ShopProducts = (props) => {
                 // props.displayBasketButtonHandler();
                 setRemoveFromBasketButton(true);
                 setEnableRemoveFromBasketButton(true);
+                setRightTick(true);
               }}
             >
               Add to basket
@@ -64,6 +80,7 @@ const ShopProducts = (props) => {
                 // props.notDisplayBasketHandler()
                 setRemoveFromBasketButton(false);
                 setEnableRemoveFromBasketButton(false);
+                setRightTick(false);
               }}
               style={style}
             >

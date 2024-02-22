@@ -19,16 +19,12 @@ const FeaturedPageSection = (props) => {
         <div style={featuredProductStyle}>
         <div style={productStyle}>
         {props.productNames.slice(0, 3).map((product, index) => (
-            <Link key={index} to={`/shop/product/${product.id}`}>
               <FeaturedSunglass productName={product} />
-            </Link>
           ))}
         </div>
         <div style={productStyle}>
           {props.productNames.slice(3, 6).map((product, index) => (
-            <Link key={index} to={`/shop/product/${product.id}`}>
               <FeaturedSunglass productName={product} />
-            </Link>
           ))}
         </div>
         </div>

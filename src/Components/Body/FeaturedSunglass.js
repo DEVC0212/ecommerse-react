@@ -14,8 +14,8 @@ const FeaturedSunglass = (props) => {
             <Link to={`/shop/product/${props.productName.id}`} style={{textDecoration: 'none'}}><div className='container' onClick={()=>{shopDetailsHandler(props.productName)}}>
                 <div className='photo'><img src={props.productName.image} style={imageStyle} /></div>
                 <div className='sentence'>
-                    <h2>{props.productName.name}</h2>
-                    <i>{props.productName.style}</i>
+                    <h2 style={{textDecoration: 'none'}}>{props.productName.name}</h2>
+                    <i style={{textDecoration: 'none'}}>{props.productName.style}</i>
                 </div>
             </div></Link>
         </>
