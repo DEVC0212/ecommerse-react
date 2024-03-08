@@ -29,9 +29,6 @@ const Signup = () => {
         }catch(e){
             console.log(e); 
         }
-        setFullName('');
-        setEmail('');
-        setPassword('');
     }
 
     const fullNameHandler = (e) => {
