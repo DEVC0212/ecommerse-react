@@ -30,7 +30,7 @@ body {
     transition: 0.5s ease;
     border-radius: 5px;
 }
-.navbar .left ul li:hover {
+.navbar .left ul li:not(.exclude):hover {
     background-color: #f2f1f1;
 }
 
@@ -114,3 +114,4 @@ body {
 .navbar .right .profilePicture span{
     margin-inline: 10px;
 }
+

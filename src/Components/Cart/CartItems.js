@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import './CartItems.css';
 import AddToCart from '../Context/AddToCart';
 const CartItems = (props) => {
-    const {addToCartHandler,minusButtonTotalAmountHandler,removeFromCartHandler,setEnableRemoveFromBasketButton} = useContext(AddToCart);
+    const {addToCartHandler,minusButtonTotalAmountHandler,removeFromCartHandler} = useContext(AddToCart);
     const [quantity, setQuantity] = useState(1);
     // const [isClicked, setISClicked] = useState(false);
     const imageStyle = {
@@ -29,7 +29,7 @@ const CartItems = (props) => {
             <div className='cart__items'>
                     <div className='buttons'>
                         <div><button onClick={()=>{addToCartHandler(props); addQuantityHandler() }}>+</button></div>
-                        <div><button id='minus' style={buttonStyle} onClick={()=>{minusQuantityHandler(); minusButtonTotalAmountHandler(quantity,props.price) }}>-</button></div>
+                        <div><button id='minus' style={buttonStyle} onClick={()=>{minusQuantityHandler(); minusButtonTotalAmountHandler(props) }}>-</button></div>
                     </div>
                     <div className='image'>
                         <img src={props.image} style={imageStyle} />
@@ -53,7 +53,7 @@ const CartItems = (props) => {
                         <h4>${quantity * props.price}.00</h4>
                     </div>
                     <div className='clear'>
-                        <button onClick={()=>{removeFromCartHandler(props,quantity);}}>X</button>
+                        <button onClick={()=>{removeFromCartHandler(props);}}>X</button>
                     </div>
                 </div>
         </>

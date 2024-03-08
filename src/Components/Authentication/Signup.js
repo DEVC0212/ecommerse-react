@@ -1,15 +1,34 @@
-import { useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import Button from '../Button/Button';
 import './Signup.css';
+import axios from 'axios';
+import { AuthContext } from '../Context/AuthContext';
+
 const Signup = () => {
     const spanEle = <span>&rarr;</span>;
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    
+    const {setSignup,fullName,email,password,setEmail,setFullName,setPassword} = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    const signupHandler = (e) => {
+
+    const signupHandler = async (e) => {
         e.preventDefault();
-        console.log(fullName);
+        try{
+            console.log("in try");
+            const response = await axios.post('http://127.0.0.1:4000/signup',{
+                FullName : fullName,
+                Email : email,
+                Password: password
+            })
+            if(response){
+                setSignup(true);
+                navigate('/');
+                localStorage.setItem('token',response.data.token);
+            }
+        }catch(e){
+            console.log(e); 
+        }
         setFullName('');
         setEmail('');
         setPassword('');
@@ -48,7 +67,7 @@ const Signup = () => {
                 <div className='already'>
                     <div className='already_account'>
                         <p>Already have an account?</p>
-                        <Button id="signin">Sign In</Button>
+                        <Link to={"/signin"}><Button id="signin">Sign In</Button></Link>
                     </div>
                 </div>
                 </form>

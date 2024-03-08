@@ -3,10 +3,13 @@ import Body from '../Body/Body';
 import Featured from '../Body/Featured';
 import FeaturedSunglass from '../Body/FeaturedSunglass';
 import AddToCart from '../Context/AddToCart';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 
 const Home = (props) => {
-  const {closeCartHandler} = useContext(AddToCart);
+  const {closeCartHandler, setProductDetail} = useContext(AddToCart);
+  const location = useLocation();
+
   // useEffect(()=>{
   //   props.resetHandler();
   // });
@@ -17,7 +20,7 @@ const Home = (props) => {
     width: '100%',
     margin: 'auto'
   }
-
+  
   return (
     <>
       <div onClick={closeCartHandler}>

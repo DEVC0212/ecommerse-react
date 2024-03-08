@@ -1,0 +1,33 @@
+.signout{
+    width: 150px;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: absolute;
+    top: -6%;
+    right: 4%;
+}
+
+.signout .signout__view{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px ;
+    transition: 0.2s;
+}
+
+.signout .signout__view:hover{
+    background-color: rgb(235, 227, 227);
+}
+
+.signout .signout__signout{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+.signout .signout__signout:hover{
+    background-color: rgb(235, 227, 227);
+}

@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Image from "../Images/Logo.png";
 import Button from "../Button/Button";
 import "./Navbar.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import AddToCart from "../Context/AddToCart";
 import {FaSearch} from 'react-icons/fa';
@@ -13,16 +13,17 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const Navbar = (props) => {
   // const [searchQuery, setSearchQuery] = useState('');
-  const {
-    isSignedUp,
-    isSignedIn,
-    signupHandler,
-    signinHandler,
-    showSignupHandler,
-    showSigninHandler,
-  } = useContext(AuthContext);
+  const {setViewSignOut, viewSignOut} = useContext(AddToCart);
+
+  useEffect(()=>{
+    localStorage.getItem('signup');
+  })
+  
+
+  const location = useLocation();
   const { showCartHandler, closeCartHandler, cartItems } =
     useContext(AddToCart);
+    const {signup,fullName} = useContext(AuthContext);
 
   const imageStyle = {
     width: "150px",
@@ -38,15 +39,25 @@ const Navbar = (props) => {
     borderRadius: "100%",
     padding: "5px",
   };
+  const basketStyle = {
+    cursor: 'not-allowed',
+    opacity: '0.6',
+    PointerEvent: 'none'
+  }
   // const submitSearchQuery = (e) => {
   //     e.preventDefault();
   //     props.searchQueryHandler(searchQuery);
   // }
+
+//   useEffect(() => {
+//     localStorage.setItem('isSignedUp', JSON.stringify(isSignedUp));
+//     localStorage.setItem('isSignedIn', JSON.stringify(isSignedIn));
+// }, [isSignedUp, isSignedIn]);
   return (
     <div className="navbar">
       <div className="left" onClick={closeCartHandler}>
         <ul>
-          <li>
+          <li className="exclude">
             <Link to="/">
               <img src={Image} style={imageStyle} alt="dev" />
             </Link>
@@ -90,8 +101,11 @@ const Navbar = (props) => {
           />
         </form>
       </div>
-        <div className="cart-button">
-          <button onClick={showCartHandler}>
+        <div className="cart-button" >
+          <button 
+          onClick={showCartHandler} 
+          style={location.pathname === '/signup' || location.pathname === '/signin' ? basketStyle : null}
+          disabled={location.pathname === '/signup' || location.pathname === '/signin'}>
             <FontAwesomeIcon icon={faShoppingBasket} className="icon" />
           </button>
           <span style={cartItems.length > 0 ? notifyStyle : null}>
@@ -99,15 +113,12 @@ const Navbar = (props) => {
           </span>
         </div>
       <div className="right">
-        {/* {!props.signupCheck && <Button text="Sign Up" id="signup" onClick={props.signupfunc} />} */}
-        {/* {!props.signinCheck && <Button text="Sign In" id="signin" signinfunc={props.signinfunc} />} */}
+      { !signup && <>
         <Link to="/signup">
-          {!isSignedUp && (
+          {location.pathname !== '/signup' && (
             <Button
               id="signup"
               onClick={() => {
-                signupHandler();
-                showSignupHandler();
               }}
             >
               Signup
@@ -115,23 +126,22 @@ const Navbar = (props) => {
           )}
         </Link>
         <Link to="/signin">
-          {!isSignedIn && (
+          {location.pathname !== '/signin' && (
             <Button
               id="signin"
               onClick={() => {
-                signinHandler();
-                showSigninHandler();
               }}
             >
               Signin
             </Button>
           )}
-        </Link>
-        {/* <div className="profilePicture">
-        <span>Dev Chauhan</span>
+        </Link> </> }
+        { signup &&
+        <div className="profilePicture" onClick={()=>{setViewSignOut(!viewSignOut);}}>
+        <span>{fullName}</span>
         <CgProfile style={{fontSize: '30px'}} />
         <MdOutlineKeyboardArrowDown style={{fontSize: '25px'}} />
-        </div> */}
+        </div> }
       </div>
     </div>
   );
