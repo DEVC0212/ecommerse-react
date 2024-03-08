@@ -25,6 +25,7 @@ const Signup = () => {
                 setSignup(true);
                 navigate('/');
                 localStorage.setItem('token',response.data.token);
+                setFullName(response.data.user.FullName);
             }
         }catch(e){
             console.log(e); 
